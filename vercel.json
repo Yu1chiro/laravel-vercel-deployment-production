@@ -1,0 +1,36 @@
+{
+    "version": 2,
+    "framework": null,
+    "functions": {
+        "api/index.php": { "runtime": "vercel-php@0.7.1" }
+    },
+    "routes": [
+        {
+            "src": "/(build|assets|css|js|images|storage|favicon.ico|robots.txt)(.*)",
+            "dest": "/public/$1$2"
+        },
+        { "src": "/(.*)", "dest": "/api/index.php" }
+    ],
+    "public": true,
+    "buildCommand": "vite build",
+    "outputDirectory": "public",
+    "env": {
+        "APP_ENV": "production",
+        "APP_DEBUG": "true",
+        "APP_URL": "",
+        "APP_CONFIG_CACHE": "/tmp/config.php",
+        "APP_EVENTS_CACHE": "/tmp/events.php",
+        "APP_PACKAGES_CACHE": "/tmp/packages.php",
+        "APP_ROUTES_CACHE": "/tmp/routes.php",
+        "APP_SERVICES_CACHE": "/tmp/services.php",
+        "VIEW_COMPILED_PATH": "/tmp",
+        "CACHE_STORE": "array",
+        "LOG_CHANNEL": "stderr",
+        "SESSION_DRIVER": "cookie",
+        "DB_CONNECTION": "pgsql",
+        "DB_HOST": "ep-polished-sky-a1t868hk-pooler.ap-southeast-1.aws.neon.tech",
+        "DB_PORT": "5432",
+        "DB_DATABASE": "neondb",
+        "DB_USERNAME": "neondb_owner"
+    }
+}
