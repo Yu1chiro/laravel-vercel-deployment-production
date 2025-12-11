@@ -28,9 +28,9 @@
         "LOG_CHANNEL": "stderr",
         "SESSION_DRIVER": "cookie",
         "DB_CONNECTION": "pgsql",
-        "DB_HOST": "ep-polished-sky-a1t868hk-pooler.ap-southeast-1.aws.neon.tech",
+        "DB_HOST": "",
         "DB_PORT": "5432",
-        "DB_DATABASE": "neondb",
-        "DB_USERNAME": "neondb_owner"
+        "DB_DATABASE": "",
+        "DB_USERNAME": ""
     }
 }
