@@ -1,3 +1,7 @@
+# Installasi Tailwind Css 3 
+```bash 
+npm install -D tailwindcss@3 postcss autoprefixer
+```
 # For deploy production on vercel :
 
 1. Bagian models/ salin user.php copy all
@@ -13,3 +17,5 @@ php artisan config:cache
 php artisan route:cache
 php artisan view:cache
 npm run build
+
+```
