@@ -7,9 +7,9 @@
 5. Copy all vercel.json karena ini sudh fix untuk production versi php tidak perlu dirubah ini sudh versi terbaru.
 
 # Jalankan perintah berikut di terminal sebelum git push
-php artisan optimize:clear 
-php artisan config:cache 
-php artisan route:cache 
-php artisan view:cache 
+```bash
+php artisan optimize:clear
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
 npm run build
-
