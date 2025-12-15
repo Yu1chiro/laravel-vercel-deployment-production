@@ -1,15 +1,15 @@
-# Setup New Project Laravel + Fillament
-```bash
-composer create-project laravel/laravel nama-project
+
+🚀 Instalasi Awal
+1. Create Project Laravel & Install Filament
+bashcomposer create-project laravel/laravel nama-project
 composer require filament/filament:"^3.3" -W
 php artisan filament:install --panels
-```
 
-# Installasi Tailwind Css 3 
-
-# setup vite config 
+🎨 Setup Tailwind CSS 3
+2. Konfigurasi Vite
+Edit file vite.config.js:
 ```bash
-import { defineConfig } from 'vite';
+javascriptimport { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 
 export default defineConfig({
@@ -20,18 +20,19 @@ export default defineConfig({
         }),
     ],
 });
-
 ```
-# Add app css from src 
+3. Setup App CSS
+Edit file resources/css/app.css:
 ```bash
-/* App css for tailwind init  */
+css/* App css for tailwind init */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 ```
-# setup tailwind config 
+4. Konfigurasi Tailwind
+Edit file tailwind.config.js:
 ```bash
-/** @type {import('tailwindcss').Config} */
+javascript/** @type {import('tailwindcss').Config} */
 export default {
   content: [
     "./resources/**/*.blade.php",
@@ -44,26 +45,26 @@ export default {
   plugins: [],
 }
 ```
-```bash 
+5. Install Dependencies Tailwind
+```bash
 npm install -D tailwindcss@3 postcss autoprefixer
 npx tailwindcss init -p
 ```
-# For deploy production on vercel :
-
-1. Bagian models/ salin user.php copy all
+🌐 Deploy ke Production (Vercel)
+6. Update User Model
+Edit file app/Models/User.php:
 ```bash
 <?php
 
 namespace App\Models;
 
-// 1. Panggil class yang dibutuhkan Filament
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-// 2. Tambahkan "implements FilamentUser" di sini
+// 2. Tambahkan "implements FilamentUser"
 class User extends Authenticatable implements FilamentUser
 {
     use HasFactory, Notifiable;
@@ -87,52 +88,53 @@ class User extends Authenticatable implements FilamentUser
         ];
     }
 
-    // 3. Tambahkan fungsi sakti ini.
-    // Fungsi ini yang bertugas membuka pintu gerbang di Production.
+    // 3. Fungsi untuk akses panel di Production
     public function canAccessPanel(Panel $panel): bool
     {
-     return $this->email === 'yukasan2005@gmail.com';
-        //gunakan return true ini opsional for fast access nonatkfikasn fungsi registration
+        return $this->email === 'admin@gmail.com';
+        
+        // Opsional: gunakan return true untuk fast access tanpa validasi email
         // return true; 
     }
 }
 ```
-2. Bagian providers/ non atkfikasn ->registration pada Fillament/AdminPanelProvider.php
-3. Agar dashboard fillament kamu lebih cepat jangan lupa gunakan variabel ->spa()
-4. Copy all AppServicesProvider.php untuk deploy ke vercel
+7. Konfigurasi Admin Panel Provider
+
+Buka file app/Providers/Filament/AdminPanelProvider.php
+Non-aktifkan ->registration() jika tidak diperlukan
+Tambahkan ->spa() untuk performa lebih cepat
+
+8. Update App Service Provider
+Edit file app/Providers/AppServiceProvider.php:
+
 ```bash
 <?php
 
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\URL; // Import di atas
-
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
     public function register(): void
     {
         //
     }
 
-public function boot(): void
-{
-    // Paksa HTTPS jika di production (Vercel)
-    if($this->app->environment('production')) {
-        URL::forceScheme('https');
+    public function boot(): void
+    {
+        // Paksa HTTPS jika di production (Vercel)
+        if($this->app->environment('production')) {
+            URL::forceScheme('https');
+        }
     }
 }
-
-}
-
 ```
-5. Copy all vercel.json karena ini sudh fix untuk production versi php tidak perlu dirubah ini sudh versi terbaru.
+9. Konfigurasi Vercel
+Buat file vercel.json di root project:
 ```bash
-{
+json{
     "version": 2,
     "framework": null,
     "functions": {
@@ -169,15 +171,26 @@ public function boot(): void
     }
 }
 ```
-# Jalankan perintah berikut di terminal sebelum git push
+10. Persiapan Sebelum Deploy
+Jalankan perintah berikut sebelum git push:
 ```bash
 php artisan optimize:clear
 php artisan config:cache
 php artisan route:cache
 php artisan view:cache
+```
+# Build assets
+```bash
 npm run build
 ```
-# Jika menggunakan fillament kamu bisa gunakan perintah berikut sebelum set to production
+# Clear Filament cache (opsional)
 ```bash
 php artisan filament:optimize-clear
 ```
+
+# Note :
+
+Pastikan email di canAccessPanel() diganti sesuai kebutuhan
+Jangan lupa set environment variables di Vercel dashboard
+Versi PHP di vercel.json sudah fix, tidak perlu diubah
+Konfigurasi ini sudah teruji untuk production
