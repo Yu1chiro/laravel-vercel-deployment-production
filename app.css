@@ -1,0 +1,4 @@
+/* App css for tailwind init  */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
