@@ -1,9 +1,11 @@
 
 🚀 Instalasi Awal
 1. Create Project Laravel & Install Filament
-bashcomposer create-project laravel/laravel nama-project
+```bash
+composer create-project laravel/laravel nama-project
 composer require filament/filament:"^3.3" -W
 php artisan filament:install --panels
+```
 
 🎨 Setup Tailwind CSS 3
 2. Konfigurasi Vite
@@ -124,7 +126,7 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        // Paksa HTTPS jika di production (Vercel)
+       
         if($this->app->environment('production')) {
             URL::forceScheme('https');
         }
