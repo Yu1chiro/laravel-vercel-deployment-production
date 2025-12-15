@@ -11,7 +11,7 @@ php artisan filament:install --panels
 2. Konfigurasi Vite
 Edit file vite.config.js:
 ```bash
-javascriptimport { defineConfig } from 'vite';
+import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 
 export default defineConfig({
@@ -26,7 +26,6 @@ export default defineConfig({
 3. Setup App CSS
 Edit file resources/css/app.css:
 ```bash
-css/* App css for tailwind init */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -34,7 +33,7 @@ css/* App css for tailwind init */
 4. Konfigurasi Tailwind
 Edit file tailwind.config.js:
 ```bash
-javascript/** @type {import('tailwindcss').Config} */
+@type {import('tailwindcss').Config} 
 export default {
   content: [
     "./resources/**/*.blade.php",
@@ -136,7 +135,7 @@ class AppServiceProvider extends ServiceProvider
 9. Konfigurasi Vercel
 Buat file vercel.json di root project:
 ```bash
-json{
+{
     "version": 2,
     "framework": null,
     "functions": {
@@ -191,7 +190,6 @@ php artisan filament:optimize-clear
 ```
 
 # Note :
-
 Pastikan email di canAccessPanel() diganti sesuai kebutuhan
 Jangan lupa set environment variables di Vercel dashboard
 Versi PHP di vercel.json sudah fix, tidak perlu diubah
