@@ -179,6 +179,9 @@ php artisan optimize:clear
 php artisan config:cache
 php artisan route:cache
 php artisan view:cache
+php artisan event:cache
+php artisan filament:cache-components
+php artisan icons:cache
 ```
 # Build assets
 ```bash
