@@ -176,21 +176,21 @@ Buat file vercel.json di root project:
 Jalankan perintah berikut sebelum git push:
 ```bash
 php artisan optimize:clear
-php artisan config:cache
-php artisan route:cache
-php artisan view:cache
-php artisan event:cache
-php artisan filament:cache-components
-php artisan icons:cache
+php artisan filament:optimize-clear
 ```
 # Build assets
 ```bash
 npm run build
 ```
-# Clear Filament cache (opsional)
-```bash
+Local gitclone 
+```bash 
+rm -rf bootstrap/cache/*.php
+rm -rf storage/framework/views/*
+rm -rf storage/framework/cache/*
+php artisan optimize:clear
 php artisan filament:optimize-clear
 ```
+
 
 # Note :
 Pastikan email di canAccessPanel() diganti sesuai kebutuhan
